@@ -12,7 +12,7 @@
   <div v-if="activeIds.length===0">请选择标签</div>
   <van-row gutter="16" style="padding: 0 16px">
     <van-col v-for="tag in activeIds">
-      <van-tag closeable size="small" type="primary" @close="doColse(tag)">
+      <van-tag closeable size="small" type="primary" @close="doClose(tag)">
         {{tag}}
       </van-tag>
     </van-col>
@@ -29,14 +29,8 @@ import { ref } from 'vue';
 import { Toast } from 'vant';
 
 const searchText = ref('');
-const onSearch = (val) => Toast(val);
-const onCancel = () => Toast('取消');
 
-//已选中的标签
-const activeIds = ref([]);
-const activeIndex = ref(0);
-
-const tagList = [
+const originTagList = [
   {
     text: '性别',
     children: [
@@ -50,14 +44,37 @@ const tagList = [
       { text: '大一', id: '大一' },
       { text: '大二', id: '大二' },
     ],
-  },
-];
+  }
+]
 
-const doColse = (tag) => {
+
+let tagList = ref(originTagList)
+
+const onSearch = (val) => {
+  tagList.value = originTagList.map(parentTag => {
+    const tempChildren = [...parentTag.children];
+    const tempParentTag = {...parentTag};
+    tempParentTag.children = tempChildren.filter(item => item.text.includes(searchText.value));
+    return tempParentTag;
+  });
+}
+
+const onCancel = () => {
+  searchText.value = '';
+  tagList.value = originTagList;
+}
+
+//已选中的标签
+const activeIds = ref([]);
+const activeIndex = ref(0)
+
+const doClose = (tag) => {
   activeIds.value = activeIds.value.filter(item => {
     return item !== tag
   })
 }
+
+
 
 </script>
 
