@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import {Button, Icon, NavBar, Tabbar, TabbarItem} from 'vant';
+import { Button, Icon, NavBar, Tabbar, TabbarItem } from 'vant';
 import * as VueRouter from 'vue-router'
 import routes from "./config/route.ts";
 

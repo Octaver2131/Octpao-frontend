@@ -1,7 +1,14 @@
 <script setup lang="ts">
   import {ref} from "vue";
-  const onClickLeft = () => alert('left')
-  const onClickRight = () => alert('right')
+  import {useRouter} from "vue-router";
+  const router = useRouter()
+
+  const onClickLeft = () => {
+    router.push('/')
+  };
+  const onClickRight = () => {
+    router.push('/search')
+  };
   const active = ref("index");
 </script>
 
