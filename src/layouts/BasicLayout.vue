@@ -4,7 +4,7 @@
   const router = useRouter()
 
   const onClickLeft = () => {
-    router.push('/')
+    router.back()
   };
   const onClickRight = () => {
     router.push('/search')
