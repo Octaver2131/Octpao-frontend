@@ -17,16 +17,24 @@
       </van-tag>
     </van-col>
   </van-row>
+  <van-divider content-position="left">选择标签</van-divider>
   <van-tree-select
       v-model:active-id="activeIds"
       v-model:main-active-index="activeIndex"
       :items="tagList"
   />
+  <div style="padding: 12px">
+    <van-button block type="primary" @click="doSearchResult">
+      提交
+    </van-button>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { Toast } from 'vant';
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const searchText = ref('');
 
@@ -74,7 +82,14 @@ const doClose = (tag) => {
   })
 }
 
-
+const doSearchResult = () => {
+  router.push({
+    path: '/user/list',
+    query: {
+      tags: activeIds.value
+    }
+  })
+}
 
 </script>
 
