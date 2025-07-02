@@ -6,8 +6,8 @@
       :thumb="user.avatarUrl"
   >
     <template #tags>
-      <van-tag plain type="danger" v-for="tag in tags" style="margin-right: 8px; margin-top: 8px" >
-        {{tag}}
+      <van-tag plain type="danger" v-for="tag in tags" style="margin-right: 8px; margin-top: 8px">
+        {{ tag }}
       </van-tag>
     </template>
     <template #footer>
@@ -16,14 +16,48 @@
       </a>
     </template>
   </van-card>
+  <van-empty v-if="!userList || userList.length < 1" description="搜索结果为空"/>
 </template>
 
-<script setup >
-import {ref} from "vue";
-import {useRoute} from "vue-router";
+<script setup>
+import {onMounted, ref} from "vue";
+import { useRoute } from "vue-router";
+import myAxios from "../plugins/myAxios.js";
+import qs from 'qs';
 
 const route = useRoute();
-const {tags} = route.query;
+const { tags } = route.query;
+const userList = ref([]);
+
+onMounted(async () => {
+  const userListData = await myAxios.get('/user/search/tags', {
+    withCredentials: false,
+    params: {
+      tagNameList: tags
+    },
+    paramsSerializer: params => {
+      return qs.stringify(params, { indices: false })
+    }
+  })
+      .then(function (response) {
+        console.log('/user/search/tags succeed', response);
+        return response.data?.data
+      })
+      .catch(function (error) {
+        console.error('/user/search/tags error', error);
+        return [];
+      })
+  if (userListData) {
+    userListData.forEach(user => {
+      if (user.tags) {
+        user.tags = JSON.parse(user.tags);
+      }
+    })
+    userList.value = userListData;
+  }
+})
+
+
 
 const mockUser = ref({
   id: 2131,
@@ -38,8 +72,6 @@ const mockUser = ref({
   tags: ['c++', 'java', 'python'],
   createTime: new Date(),
 })
-
-const userList = ref({mockUser});
 
 </script>
 
