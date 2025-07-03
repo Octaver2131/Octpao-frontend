@@ -2,12 +2,12 @@
   <van-form @submit="onSubmit">
     <van-field
         v-model="editUser.currentValue"
-        :naeme="editUser.editKey"
+        :name="editUser.editKey"
         :label="editUser.editName"
         :placeholder="`请输入${editUser.editName}`"
     />
     <div style="margin: 16px;">
-      <van-button round block typr="primary">
+      <van-button round block type="primary" native-type="submit">
         提交
       </van-button>
     </div>
@@ -15,11 +15,14 @@
 </template>
 
 <script setup lang="ts">
+import {useRoute, useRouter} from "vue-router";
 import { ref } from "vue";
-import { useRoute } from "vue-router";
+import myAxios from "../plugins/myAxios";
+import {Toast} from "vant";
+import {getCurrentUser} from "../services/user";
 
 const route = useRoute();
-
+const router = useRouter();
 
 const editUser = ref({
   editKey: route.query.editKey,
@@ -27,9 +30,29 @@ const editUser = ref({
   editName: route.query.editName,
 })
 
-const onSubmit = (values) => {
-  consle.log(values)
-}
+const onSubmit = async () => {
+  const currentUser = await getCurrentUser();
+
+  if (!currentUser) {
+    alert('请先登录')
+    return;
+  }
+
+  console.log(currentUser, '当前用户')
+
+  const res = await myAxios.post('/user/update', {
+    'id': currentUser.id,
+    [editUser.value.editKey as string]: editUser.value.currentValue,
+  })
+  console.log(res, '更新请求');
+  if (res.code === 0 && res.data > 0) {
+    alert('修改成功');
+    router.push('/user')
+  } else {
+    alert('修改失败')
+  }
+};
+
 </script>
 
 <style scoped>
