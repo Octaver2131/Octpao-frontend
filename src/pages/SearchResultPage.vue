@@ -22,7 +22,7 @@
 <script setup>
 import {onMounted, ref} from "vue";
 import { useRoute } from "vue-router";
-import myAxios from "../plugins/myAxios.js";
+import myAxios from "../plugins/myAxios.ts";
 import qs from 'qs';
 
 const route = useRoute();
@@ -59,19 +59,19 @@ onMounted(async () => {
 
 
 
-const mockUser = ref({
-  id: 2131,
-  username: 'Octaver',
-  userAccount: 'Octaver',
-  profile: '一条咸鱼',
-  gender: 0,
-  phone: '11111111111',
-  email: 'Octaver2131@outlook.com',
-  planetCode: '2131',
-  avatarUrl: 'https://avatars.githubusercontent.com/u/199230757?v=4',
-  tags: ['c++', 'java', 'python'],
-  createTime: new Date(),
-})
+// const mockUser = ref({
+//   id: 2131,
+//   username: 'Octaver',
+//   userAccount: 'Octaver',
+//   profile: '一条咸鱼',
+//   gender: 0,
+//   phone: '11111111111',
+//   email: 'Octaver2131@outlook.com',
+//   planetCode: '2131',
+//   avatarUrl: 'https://avatars.githubusercontent.com/u/199230757?v=4',
+//   tags: ['c++', 'java', 'python'],
+//   createTime: new Date(),
+// })
 
 </script>
 
