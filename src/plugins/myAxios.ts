@@ -4,6 +4,8 @@ const myAxios = axios.create({
     baseURL: 'http://localhost:8080/api',
 })
 
+myAxios.defaults.withCredentials = true;
+
 myAxios.interceptors.request.use(function (config) {
     console.log("我要发送请求了。", config)
     return config;
