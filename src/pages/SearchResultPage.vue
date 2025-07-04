@@ -1,21 +1,5 @@
 <template>
-  <van-card
-      v-for="user in userList"
-      :desc="user.profile"
-      :title="`${user.username} (${user.planetCode})`"
-      :thumb="user.avatarUrl"
-  >
-    <template #tags>
-      <van-tag plain type="danger" v-for="tag in tags" style="margin-right: 8px; margin-top: 8px">
-        {{ tag }}
-      </van-tag>
-    </template>
-    <template #footer>
-      <a href="https://github.com/Octaver2131" target="_blank" rel="noopener noreferrer">
-        <van-button size="mini">联系我</van-button>
-      </a>
-    </template>
-  </van-card>
+  <user-card-list :user-list="userList" />
   <van-empty v-if="!userList || userList.length < 1" description="搜索结果为空"/>
 </template>
 
@@ -24,6 +8,7 @@ import {onMounted, ref} from "vue";
 import { useRoute } from "vue-router";
 import myAxios from "../plugins/myAxios.ts";
 import qs from 'qs';
+import UserCardList from "../components/UserCardList.vue";
 
 const route = useRoute();
 const { tags } = route.query;
