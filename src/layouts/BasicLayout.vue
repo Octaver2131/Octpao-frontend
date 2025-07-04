@@ -34,5 +34,7 @@
 </template>
 
 <style scoped>
-
+#content {
+  padding-bottom: 48px;
+}
 </style>
