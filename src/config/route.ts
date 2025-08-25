@@ -1,5 +1,6 @@
 import Index from "../pages/Index.vue";
 import TeamPage from "../pages/TeamPage.vue";
+import TeamAddPage from "../pages/TeamAddPage.vue";
 import UserPage from "../pages/UserPage.vue";
 import SearchPage from "../pages/SearchPage.vue";
 import SearchResultPage from "../pages/SearchResultPage.vue";
@@ -9,6 +10,7 @@ import UserLoginPage from "../pages/UserLoginPage.vue";
 const routes = [
     { path: '/', component: Index },
     { path: '/team', component: TeamPage },
+    { path: '/team/add', component: TeamAddPage},
     { path: '/user', component: UserPage },
     { path: '/search', component: SearchPage },
     { path: '/user/list', component: SearchResultPage},
