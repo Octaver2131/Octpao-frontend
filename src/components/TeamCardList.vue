@@ -23,6 +23,7 @@
 <!--        </div>-->
       </template>
       <template #footer>
+        <van-button v-if="team.userId === currentUser?.id" size="small" type="primary" plain @click="doJoinTeam(team.id)">更新队伍</van-button>
         <van-button size="small" type="primary" plain @click="doJoinTeam(team.id)">加入队伍</van-button>
       </template>
     </van-card>
@@ -33,10 +34,18 @@
 import type {TeamType} from "../models/team";
 import {teamStatusEnum} from "../constants/team.ts";
 import myAxios from "../plugins/myAxios.ts";
+import {onMounted, ref} from "vue";
+import {getCurrentUser} from "../services/user.ts";
 
 interface TeamCardListProps {
   teamList: TeamType[];
 }
+
+const currentUser = ref();
+
+onMounted(async () => {
+  currentUser.value = await getCurrentUser();
+})
 
 const props = withDefaults(defineProps<TeamCardListProps>(), {
   // @ts-ignore
