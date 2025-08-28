@@ -34,7 +34,7 @@ const onSubmit = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    alert('请先登录')
+    // alert('请先登录')
     return;
   }
 
@@ -46,10 +46,10 @@ const onSubmit = async () => {
   })
   console.log(res, '更新请求');
   if (res.code === 0 && res.data > 0) {
-    alert('修改成功');
+    // alert('修改成功');
     router.push('/user')
   } else {
-    alert('修改失败')
+    // alert('修改失败')
   }
 };
 

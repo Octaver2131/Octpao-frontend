@@ -65,9 +65,9 @@ const doJoinTeam = async (id: number) => {
     teamId: id
   });
   if (res?.code === 0) {
-    alert('加入成功');
+    // alert('加入成功');
   } else {
-    alert('加入失败' + (res.description ? `，${res.description}` : ''));
+    // alert('加入失败' + (res.description ? `，${res.description}` : ''));
   }
 }
 
@@ -93,9 +93,9 @@ const doDeleteTeam = async (id: number) => {
     id,
   });
   if (res?.code === 0) {
-    alert('操作成功');
+    // alert('操作成功');
   } else {
-    alert('操作失败' + (res.description ? `，${res.description}` : ''));
+    // alert('操作失败' + (res.description ? `，${res.description}` : ''));
   }
 }
 
@@ -108,9 +108,9 @@ const doQuitTeam = async (id: number) => {
     teamId: id
   });
   if (res?.code === 0) {
-    alert('操作成功');
+    // alert('操作成功');
   } else {
-    alert('操作失败' + (res.description ? `，${res.description}` : ''));
+    // alert('操作失败' + (res.description ? `，${res.description}` : ''));
   }
 }
 </script>

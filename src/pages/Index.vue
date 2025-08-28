@@ -36,12 +36,12 @@ const loadData = async () => {
     })
         .then(function (response) {
           console.log('/user/match succeed',response);
-          alert('请求成功');
+          // alert('请求成功');
           return response?.data;
         })
         .catch(function (error) {
           console.log('/user/match error',error);
-          alert('请求失败');
+          // alert('请求失败');
         });
   } else {
     //普通用户使用分页查询
@@ -53,12 +53,12 @@ const loadData = async () => {
     })
         .then(function (response) {
           console.log('/user/recommend succeed', response);
-          alert('请求成功');
+          // alert('请求成功');
           return response?.data?.records;
         })
         .catch(function (error) {
           console.log('/user/recommends error',error);
-          alert('请求失败');
+          // alert('请求失败');
         });
 
   }

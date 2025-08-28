@@ -99,7 +99,7 @@ const addTeamData = ref({})
 // 获取之前队伍信息
 onMounted(async() => {
   if (id <= 0) {
-    alert('队伍不存在');
+    // alert('队伍不存在');
   }
   const res = await myAxios.get('/team/get', {
     params: {
@@ -109,7 +109,7 @@ onMounted(async() => {
   if (res?.code === 0) {
     addTeamData.value = res.data;
   } else {
-    alert("获取队伍列表失败，请刷新重试");
+    // alert("获取队伍列表失败，请刷新重试");
   }
 })
 
@@ -122,13 +122,13 @@ const onSubmit = async () => {
   }
   const res = await myAxios.post("/team/update", postData);
   if (res?.code === 0 && res.data) {
-    alert('更新成功');
+    // alert('更新成功');
     router.push({
       path: '/team',
       replace: true,
     });
   } else {
-    alert('更新失败');
+    // alert('更新失败');
   }
 }
 </script>

@@ -111,13 +111,13 @@ const onSubmit = async () => {
   }
   const res = await myAxios.post("/team/add", postData);
   if (res?.code === 0 && res.data) {
-    alert('添加成功');
+    // alert('添加成功');
     router.push({
       path: '/team',
       replace: true,
     });
   } else {
-    alert('添加失败');
+    // alert('添加失败');
   }
 }
 </script>

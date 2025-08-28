@@ -27,7 +27,7 @@ const listTeam = async (val = '') => {
   if (res?.code === 0) {
     teamList.value = res.data;
   } else {
-    alert("获取队伍列表失败，请刷新重试");
+    // alert("获取队伍列表失败，请刷新重试");
   }
 }
 

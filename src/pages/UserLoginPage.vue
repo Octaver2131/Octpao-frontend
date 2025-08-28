@@ -44,9 +44,9 @@ const onSubmit = async () => {
   });
   if (res.code === 0 && res.data != null) {
     router.replace("/")
-    alert("登录成功")
+    // alert("登录成功")
   } else {
-    alert(res.message)
+    // alert(res.message)
   }
 };
 
