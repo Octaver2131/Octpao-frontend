@@ -94,7 +94,7 @@ const initFormData = {
   "name": "",
   "description": "",
   "expireTime": null,
-  "maxNum": 5,
+  "maxNum": 3,
   "password": "",
   "status": 0,
 }
