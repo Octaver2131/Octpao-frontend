@@ -1,21 +1,38 @@
 <script setup lang="ts">
-  import {ref} from "vue";
-  import {useRouter} from "vue-router";
-  const router = useRouter()
 
-  const onClickLeft = () => {
-    router.back()
-  };
-  const onClickRight = () => {
-    router.push('/search')
-  };
-  const active = ref("index");
+import {ref} from "vue";
+import {useRoute, useRouter} from "vue-router";
+import routes from "../config/route.ts";
+
+const router = useRouter()
+const route = useRoute()
+const DEFAULT_TITLE = "欧泡时间"
+const title = ref(DEFAULT_TITLE)
+
+
+router.beforeEach((to, from) => {
+  const toPath = to.path
+  const route = routes.find((route) => {
+    return route.path === to.path
+  })
+  title.value = route?.title ?? DEFAULT_TITLE;
+})
+
+const onClickLeft = () => {
+  router.back()
+};
+
+const onClickRight = () => {
+  router.push('/search')
+};
+
+// const active = ref("index");
 </script>
 
 <template>
   <van-nav-bar
-      title="标题"
-      left-arrow
+    :title="title"
+    left-arrow
       @click-left="onClickLeft"
       @click-right="onClickRight"
   >

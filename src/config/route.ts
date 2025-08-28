@@ -15,13 +15,13 @@ import TeamAddPage from "../pages/TeamAddPage.vue";
 import TeamUpdatePage from "../pages/TeamUpdatePage.vue";
 
 const routes = [
-    { path: '/', component: Index },
-    { path: '/team', component: TeamPage },
-    { path: '/team/add', component: TeamAddPage},
-    { path: '/team/update', component: TeamUpdatePage},
-    { path: '/user', component: UserPage },
-    { path: '/search', component: SearchPage },
-    { path: '/user/list', component: SearchResultPage},
+    { path: '/', component: Index, title: "欧泡时间" },
+    { path: '/team', component: TeamPage, title: "欧泡时间" },
+    { path: '/team/add', component: TeamAddPage, title: "欧泡时间" },
+    { path: '/team/update', component: TeamUpdatePage, title: "欧泡时间" },
+    { path: '/user', component: UserPage, title: "欧泡时间" },
+    { path: '/search', component: SearchPage, title: "欧泡时间" },
+    { path: '/user/list', component: SearchResultPage, title: "欧泡时间" },
     { path: '/user/edit', component: UserEditPage},
     { path: '/user/login', component: UserLoginPage},
     { path: '/user/update', component: UserUpdatePage },
