@@ -29,9 +29,11 @@
 
 import myAxios from "../plugins/myAxios.ts";
 import {ref} from "vue";
-import {useRouter} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 
 const router = useRouter();
+const route = useRoute();
+
 
 const userAccount = ref('');
 const userPassword = ref('');
@@ -42,8 +44,10 @@ const onSubmit = async () => {
     userAccount: userAccount.value,
     userPassword: userPassword.value
   });
+
   if (res.code === 0 && res.data != null) {
-    router.replace("/")
+    const redirectUrl = route.query?.redirect ?? '/';
+    window.location.href = redirectUrl;
     // alert("登录成功")
   } else {
     // alert(res.message)
